@@ -13,7 +13,7 @@ import requests
 
 Port = int(os.environ.get('PORT', 50000))
 
-export_file_url = 'https://www.dropbox.com/s/6bgq8t6yextloqp/export.pkl?raw=1'
+export_file_url = 'https://drive.google.com/uc?export=download&id=1yoHcgr06ra7KX_SUado7ZzNEJ19HC3sg'
 export_file_name = 'export.pkl'
 
 path = Path(__file__).parent
