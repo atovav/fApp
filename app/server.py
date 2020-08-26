@@ -16,7 +16,7 @@ from pathlib import Path
 Port = int(os.environ.get('PORT', 50000))
 
 export_file_url = 'https://drive.google.com/uc?export=download&id=1EWuwdzvazEH8-W5RcWl4i6GiiqLM712J'
-export_file_name = 'model'
+export_file_name = 'model.pkl'
 
 #path = Path(__file__).parent
 path = Path('app/models')
