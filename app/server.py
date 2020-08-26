@@ -18,7 +18,7 @@ Port = int(os.environ.get('PORT', 50000))
 export_file_url = 'https://drive.google.com/uc?export=download&id=1EWuwdzvazEH8-W5RcWl4i6GiiqLM712J'
 export_file_name = 'model'
 
-path = Path(__file__).parent
+path = Path().parent
 
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
