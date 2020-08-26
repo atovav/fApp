@@ -19,7 +19,7 @@ export_file_url = 'https://drive.google.com/uc?export=download&id=1EWuwdzvazEH8-
 export_file_name = 'model'
 
 #path = Path(__file__).parent
-path = Path('app/static')
+path = Path('/models')
 
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
