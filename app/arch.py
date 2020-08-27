@@ -1,3 +1,5 @@
+from fastai.vision.all import *
+
 class ReflectionLayer(Module):
     "A series of Reflection Padding followed by a ConvLayer"
     def __init__(self, in_channels, out_channels, ks=3, stride=2):
