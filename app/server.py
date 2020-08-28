@@ -19,8 +19,8 @@ Port = int(os.environ.get('PORT', 50000))
 export_file_url = 'https://drive.google.com/uc?export=download&id=1EWuwdzvazEH8-W5RcWl4i6GiiqLM712J'
 export_file_name = 'model.pkl'
 
-path = Path(__file__).parent
-#path = Path('app/models')
+#path = Path(__file__).parent
+path = Path('models/')
 
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
@@ -37,9 +37,9 @@ async def download_file(url, dest):
 
 
 async def setup_learner():
-    await download_file(export_file_url, path / export_file_name)
+#    await download_file(export_file_url, path / export_file_name)
     try:
-        learn = load_learner(path, export_file_name)
+        learn = load_learner(path, 'model.pkl')
         return learn
     except RuntimeError as e:
         if len(e.args) > 0 and 'CPU-only machine' in e.args[0]:
