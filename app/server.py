@@ -106,11 +106,6 @@ class TransformerNet(Module):
         y = self.deconv3(y)
         return y
 
-def open_image(fname,):
-    img = PIL.Image.open(fname).convert('RGB')
-    t = torch.Tensor(np.array(img))
-    return t.permute(2,0,1).float()/255.0
-
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
 app.mount('/static', StaticFiles(directory='app/static'))
@@ -155,7 +150,7 @@ async def homepage(request):
 async def analyze(request):
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
-    img = open_image(BytesIO(img_bytes))
+    img = PILImage.create(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
     return JSONResponse({'result': prediction})
 
