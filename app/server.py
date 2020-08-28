@@ -3,6 +3,7 @@ import asyncio
 import uvicorn
 import os 
 import requests
+import PIL
 from fastai import *
 from fastai.vision.all import *
 from io import BytesIO
