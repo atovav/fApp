@@ -19,7 +19,6 @@ export_file_url = 'https://drive.google.com/uc?export=download&id=1EWuwdzvazEH8-
 export_file_name = 'model.pkl'
 
 path = Path(__file__).parent
-#path = Path()
 
 class ReflectionLayer(Module):
     "A series of Reflection Padding followed by a ConvLayer"
@@ -105,6 +104,11 @@ class TransformerNet(Module):
         y = self.relu(self.in5(self.deconv2(y)))
         y = self.deconv3(y)
         return y
+
+def open_image(fname,):
+    img = PIL.Image.open(fname).convert('RGB')
+    t = torch.Tensor(np.array(img))
+    return t.permute(2,0,1).float()/255.0
 
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
