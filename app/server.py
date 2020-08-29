@@ -9,7 +9,7 @@ from fastai.vision.all import *
 from io import BytesIO
 from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
-from starlette.responses import HTMLResponse, JSONResponse
+from starlette.responses import HTMLResponse, JSONResponse, StreamingResponse
 from starlette.staticfiles import StaticFiles
 
 
@@ -152,7 +152,8 @@ async def analyze(request):
     img_bytes = await (img_data['file'].read())
     img = PILImage.create(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
-    return JSONResponse({'result': prediction})
+    img_pred = to_image(prediction)
+    return StreamingResponse(BytesIO(im_pred.tobytes()), media_type="image/jpg")
 
 
 if __name__ == '__main__':
