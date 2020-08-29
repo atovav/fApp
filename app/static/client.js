@@ -28,7 +28,8 @@ function analyze() {
   };
   xhr.onload = function(e) {
     if (this.readyState === 4) {
-      el("result-label").innerHTML = `<img src="${response}">`;
+      
+      el("result-label").innerHTML = `<img src="${xhr.response}">`;
     }
     el("analyze-button").innerHTML = "Cambiar!";
   };
