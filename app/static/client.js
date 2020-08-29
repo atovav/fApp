@@ -32,7 +32,7 @@ function analyze() {
       image.onload = function(){
         console.log(image.width);
       }
-      image.src = ${xhr.response};
+      image.src = "${xhr.response}";
       el("result-label").appendChild(image);
     }
     el("analyze-button").innerHTML = "Cambiar!";
