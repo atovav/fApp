@@ -16,8 +16,8 @@ from starlette.staticfiles import StaticFiles
 
 Port = int(os.environ.get('PORT', 50000))
 
-export_file_url = 'https://drive.google.com/uc?export=download&id=1EWuwdzvazEH8-W5RcWl4i6GiiqLM712J'
-export_file_name = 'model.pkl'
+export_file_url = 'https://drive.google.com/uc?export=download&id=1QVjlak-SF6yu0UBXQZQHzsjdc2Jrsmuj'
+export_file_name = 'export.pkl'
 
 path = Path(__file__).parent
 
@@ -48,8 +48,7 @@ class ResidualBlock(Module):
           out = self.in2(self.conv2(out))
           out = out + residual
           return out
-		  
-		  
+		  		  
 class UpsampleConvLayer(Module):
     "Upsample with a ReflectionLayer"
     def __init__(self, in_channels, out_channels, ks=3, stride=1, upsample=None):
@@ -65,8 +64,7 @@ class UpsampleConvLayer(Module):
         out = self.reflection_pad(x_in)
         out = self.conv2d(out)
         return out
-		
-		
+				
 class TransformerNet(Module):
     "A simple network for style transfer"
     def __init__(self):
