@@ -153,7 +153,7 @@ async def analyze(request):
     img = PILImage.create(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
     img_pred = to_image(prediction)
-    return StreamingResponse(BytesIO(im_pred.tobytes()), media_type="image/jpg")
+    return StreamingResponse(BytesIO(img_pred.tobytes()), media_type="image/jpg")
 
 
 if __name__ == '__main__':
