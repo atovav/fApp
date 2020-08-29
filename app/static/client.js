@@ -21,7 +21,6 @@ function analyze() {
   el("analyze-button").innerHTML = "Analyzing...";
   var xhr = new XMLHttpRequest();
   var loc = window.location;
-  xhr.responseType = 'blob';
   xhr.open("POST", `${loc.protocol}//${loc.hostname}:${loc.port}/analyze`,
     true);
   xhr.onerror = function() {
@@ -29,12 +28,8 @@ function analyze() {
   };
   xhr.onload = function(e) {
     if (this.readyState === 4) {
-      let blob = xhr.response;
-      let objectURL = URL.createObjectURL(blob);
-      const image = document.createElement('img');
-      image.src = objectURL;
-      el('result-label').appendChild(image);
-      URL.revokeObjectURL(image.src);
+      var response = JSON.parse(e.target.responseText);
+      el("result-label").innerHTML = `<img src="${response}">`;
     }
     el("analyze-button").innerHTML = "Cambiar!";
   };

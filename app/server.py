@@ -4,6 +4,7 @@ import uvicorn
 import os 
 import requests
 import PIL
+import base64
 from fastai import *
 from fastai.vision.all import *
 from io import BytesIO
@@ -150,9 +151,11 @@ async def analyze(request):
     img_bytes = await (img_data['file'].read())
     img = PILImage.create(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
-    img_pred = to_image(prediction)
-    #StreamingResponse(BytesIO(img_pred.tobytes()), media_type="image/jpg")
-    return Response(BytesIO(img_pred.tobytes()), media_type="image/jpg")
+    resp_bytes = BytesIO()
+    to_image(prediction).save(resp_bytes, format='jpeg')
+    img_str = base64.b64encode(resp_bytes.getvalue()).decode()
+    img_str = "data:image/jpeg;base64," + img_str
+    return Response(img_str)
 
 
 if __name__ == '__main__':
