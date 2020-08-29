@@ -18,7 +18,7 @@ function analyze() {
   var uploadFiles = el("file-input").files;
   if (uploadFiles.length !== 1) alert("Please select a file to analyze!");
 
-  el("analyze-button").innerHTML = "Analyzing...";
+  el("analyze-button").innerHTML = "Cambiando espere por favor...";
   var xhr = new XMLHttpRequest();
   var loc = window.location;
   xhr.open("POST", `${loc.protocol}//${loc.hostname}:${loc.port}/analyze`,
@@ -28,8 +28,12 @@ function analyze() {
   };
   xhr.onload = function(e) {
     if (this.readyState === 4) {
-      
-      el("result-label").innerHTML = `<img src="${xhr.response}">`;
+      var image = new Image();
+      image.onload = function(){
+        console.log(image.width);
+      }
+      image.src = ${xhr.response};
+      el("result-label").appendChild(image);
     }
     el("analyze-button").innerHTML = "Cambiar!";
   };
