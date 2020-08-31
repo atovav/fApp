@@ -152,9 +152,9 @@ async def analyze(request):
     img = PILImage.create(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
     resp_bytes = BytesIO()
-    to_image(prediction).save(resp_bytes, format='jpeg')
+    to_image(prediction).save(resp_bytes, format='png')
     img_str = base64.b64encode(resp_bytes.getvalue()).decode()
-    img_str = "data:image/jpeg;base64," + img_str
+    img_str = "data:image/png;base64," + img_str
     return Response(img_str)
 
 
